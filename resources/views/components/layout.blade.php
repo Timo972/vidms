@@ -3,7 +3,7 @@
 
 <head>
     <x-meta />
-    <title>Laravel</title>
+    <title>{{ $title }}</title>
 
     @vite(['resources/js/app.js', 'resources/css/app.css'])
 
