@@ -19,8 +19,21 @@
 		}
 	},
 	"remoteUser": "sail",
-	"postCreateCommand": "chown -R 1000:1000 /var/www/html"
-	// "forwardPorts": [],
+	"postCreateCommand": "chown -R 1000:1000 /var/www/html",
+	"forwardPorts": [
+		80,
+		5173
+	],
+	"portsAttributes": {
+		"80": {
+			"label": "Application",
+			"onAutoForward": "openPreview"
+		},
+		"5173": {
+			"label": "Vite HMR",
+			"onAutoForward": "notify"
+		}
+	}
 	// "runServices": [],
 	// "shutdownAction": "none",
 }
