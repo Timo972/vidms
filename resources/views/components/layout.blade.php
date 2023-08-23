@@ -5,7 +5,7 @@
     <x-meta />
     <title>Laravel</title>
 
-    @vite('resources/js/app.js')
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
