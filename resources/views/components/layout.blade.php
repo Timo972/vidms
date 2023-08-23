@@ -1,8 +1,10 @@
+@props(['title', 'description', 'imageUrl'])
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <x-meta />
+    <x-meta :title="$title" description="test" />
     <title>{{ $title }}</title>
 
     @vite(['resources/js/app.js', 'resources/css/app.css'])
