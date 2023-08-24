@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Storage;
 
 class VideoController extends Controller
 {
+    protected function renderView(Video $video) {
+        $url = Storage::url($video->path);
+        $visiblity = Storage::getVisibility($video->path);
+        return view('view', ['video' => $video, 'url' => $url, 'visibility' => $visiblity]);
+    }
+
     public function upload(Request $request)
     {
         if (!$request->hasFile('video')) {
@@ -29,7 +35,14 @@ class VideoController extends Controller
         $secret = $request->input('secret');
         $title = $request->input('title');
         $desc = $request->input('description');
-        $filePath = $file->store('videos');
+
+        // stream upload file to storage
+        $filePath = null;
+        if ($secret) {
+            $filePath = $file->store('videos');
+        } else {
+            $filePath = $file->storePublicly('videos');
+        }
 
         $video = Video::create([
             'slug' => Str::slug($name ?? $file->getClientOriginalName()),
@@ -39,7 +52,15 @@ class VideoController extends Controller
         ]);
         $video->save();
 
-        return view('view', ['video' => $video]);
+        return VideoController::renderView($video);
+    }
+
+    public function delete(Request $request)
+    {
+        $video = Video::where('slug', $request->input('slug'))->firstOrFail();
+        $video->delete();
+        Storage::delete($video->path);
+        return redirect()->route('index');
     }
 
     public function index(Request $request)
@@ -48,6 +69,8 @@ class VideoController extends Controller
     }
 
     public function view(string $slug) {
-        return view('view', ['video' => Video::where('slug', $slug)->firstOrFail()]);
+        $video = Video::where('slug', $slug)->firstOrFail();
+
+        return VideoController::renderView($video);
     }
 }

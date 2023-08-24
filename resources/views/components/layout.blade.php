@@ -9,7 +9,7 @@
 
     @vite(['resources/js/app.js', 'resources/css/app.css'])
 
-    {{ $head }}
+    {{ $head ?? '' }}
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">

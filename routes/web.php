@@ -14,11 +14,13 @@ use App\Http\Controllers\VideoController;
 |
 */
 
-Route::get('/', [VideoController::class, 'index']);
+Route::get('/', [VideoController::class, 'index'])->name('index');
 
 Route::get('/upload', function () {
     return view('upload');
-});
+})->name('upload');
 Route::post('/upload', [VideoController::class, 'upload']);
 
-Route::get('/view/{video}', [VideoController::class, 'view']);
+Route::get('/view/{video}', [VideoController::class, 'view'])->name('view');
+
+Route::delete('/delete', [VideoController::class, 'delete'])->name('delete');
