@@ -73,4 +73,22 @@ class VideoController extends Controller
 
         return VideoController::renderView($video);
     }
+
+    public function stream(string $slug) {
+        $video = Video::where('slug', $slug)->firstOrFail();
+
+        if (!Storage::exists($video->path)) {
+            abort(404);
+        }
+
+        $stream = Storage::readStream($video->path);
+
+        return response()->stream(function () use ($stream) {
+            fpassthru($stream);
+        }, 200, [
+            'Content-Type' => Storage::mimeType($video->path),
+            'Content-Length' => Storage::size($video->path),
+            'Content-Disposition' => 'inline; filename="' . $video->title . '"',
+        ]);
+    }
 }

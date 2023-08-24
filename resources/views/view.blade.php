@@ -11,6 +11,7 @@
     </section>
     <media-player
         title="Sprite Fight"
+        src="/video/{{ $video->slug }}"
         poster="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/thumbnail.webp?time=268&width=980"
         thumbnails="https://media-files.vidstack.io/sprite-fight/thumbnails.vtt"
         aspect-ratio="16/9"
@@ -36,5 +37,4 @@
         </media-outlet>
         <media-community-skin></media-community-skin>
     </media-player>
-    <a href="{{$url}}">{{$url}}</a>
 </x-layout>
