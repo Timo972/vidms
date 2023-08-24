@@ -14,9 +14,7 @@ use App\Http\Controllers\VideoController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [VideoController::class, 'index']);
 
 Route::get('/upload', function () {
     return view('upload.index');

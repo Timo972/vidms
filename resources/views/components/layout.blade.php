@@ -15,7 +15,11 @@
 </head>
 
 <body class="antialiased">
-    {{ $slot }}
+    <x-header />
+    <main class="max-w-6xl mx-auto">
+        {{ $slot }}
+    </main>
+    <x-footer />
 </body>
 
 </html>
