@@ -25,3 +25,7 @@ Route::get('/view/{video}', [VideoController::class, 'view'])->name('view');
 Route::get('/video/{video}', [VideoController::class, 'stream'])->name('stream');
 
 Route::delete('/delete', [VideoController::class, 'delete'])->name('delete');
+
+Route::get('/phpinfo', function () {
+    phpinfo();
+})->name('phpinfo');
