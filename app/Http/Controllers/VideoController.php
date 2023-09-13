@@ -41,9 +41,9 @@ class VideoController extends Controller
             ]);
         }
 
-        if (!array_search($file->getMimeType(), VideoController::$VALID_MIME_TYPES)) {
+        if (!in_array($file->getMimeType(), VideoController::$VALID_MIME_TYPES)) {
             return redirect()->back()->withErrors([
-                'video' => 'Unsupported video format',
+                'video' => "Unsupported video format: {$file->getMimeType()}",
             ]);
         }
 
