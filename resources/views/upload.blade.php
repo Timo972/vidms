@@ -15,7 +15,7 @@
             </div>
         @endforeach
         @csrf
-        <input type="file" name="video" class="input-file input-file-lg input-file-primary" />
+        <input type="file" name="video" class="input-file input-file-lg input-file-primary" accept=".mp4,.ogg,.ogv,.webm,.mov,.m4v" />
         <input type="text" name="name" class="input input-block input-lg focus:input-primary" placeholder="video-name" />
         <input type="password" name="secret" class="input input-block input-lg focus:input-primary" placeholder="password" />
         <div class="flex flex-row justify-between">

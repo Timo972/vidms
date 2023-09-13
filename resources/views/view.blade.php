@@ -6,12 +6,14 @@
     </x-slot>
     <section class="my-12">
         <span class="badge badge-primary">{{ $visibility }}</span>
+        <span class="badge badge-primary">{{ $mime }}</span>
         <h1 class="text-4xl text-content1 mb-2">{{ $video->title }}</h1>
         <p class="text-content2">{{ $video->description }}</p>
     </section>
     <media-player
-        title="Sprite Fight"
+        title="{{ $video->title }}"
         src="/video/{{ $video->slug }}"
+        type="{{ $mime }}"
         poster="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/thumbnail.webp?time=268&width=980"
         thumbnails="https://media-files.vidstack.io/sprite-fight/thumbnails.vtt"
         aspect-ratio="16/9"

@@ -9,10 +9,20 @@ use Illuminate\Support\Facades\Storage;
 
 class VideoController extends Controller
 {
+    static $VALID_MIME_TYPES = [
+        'video/mp4',
+        'video/webm',
+        'video/3gp',
+        'video/ogg',
+        'video/avi',
+        'video/mpeg',
+    ];
+
     protected function renderView(Video $video) {
         $url = Storage::url($video->path);
         $visiblity = Storage::getVisibility($video->path);
-        return view('view', ['video' => $video, 'url' => $url, 'visibility' => $visiblity]);
+        $mime = Storage::mimeType($video->path);
+        return view('view', ['video' => $video, 'url' => $url, 'visibility' => $visiblity, 'mime' => $mime]);
     }
 
     public function upload(Request $request)
@@ -27,7 +37,13 @@ class VideoController extends Controller
 
         if (!$file->isValid()) {
             return redirect()->back()->withErrors([
-                'video' => 'Invalid video',
+                'video' => 'Invalid video file',
+            ]);
+        }
+
+        if (!array_search($file->getMimeType(), VideoController::$VALID_MIME_TYPES)) {
+            return redirect()->back()->withErrors([
+                'video' => 'Unsupported video format',
             ]);
         }
 
