@@ -1,4 +1,4 @@
-<x-layout title="Upload to VidMS / Simple Video CMS">
+<x-layout title="Upload to VidMS / Simple Video CMS" description="Pick a video to upload and define meta data">
     <section class="my-12">
         <h1 class="text-4xl text-content1 mb-2">Upload your video</h1>
         <p class="text-content2">Select a video from your local drive</p>

@@ -4,7 +4,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <x-meta :title="$title" description="test" />
+    <x-meta :title="$title" :description="$description" />
     <title>{{ $title }}</title>
 
     @vite(['resources/js/app.js', 'resources/css/app.css'])

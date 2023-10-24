@@ -22,9 +22,11 @@ Route::get('/upload', function () {
 Route::post('/upload', [VideoController::class, 'upload']);
 
 Route::get('/view/{video}', [VideoController::class, 'view'])->name('view');
-Route::get('/video/{video}', [VideoController::class, 'stream'])->name('stream');
+Route::get('/stream/{video}', [VideoController::class, 'stream'])->name('stream');
+Route::get('/read/{video}', [VideoController::class, 'read'])->name('read');
+Route::get('/download/{video}', [VideoController::class, 'download'])->name('download');
 
-Route::delete('/delete', [VideoController::class, 'delete'])->name('delete');
+Route::post('/delete', [VideoController::class, 'delete'])->name('delete');
 
 Route::get('/phpinfo', function () {
     phpinfo();
