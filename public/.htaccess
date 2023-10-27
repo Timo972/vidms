@@ -1,3 +1,13 @@
+#<IfModule mod_headers.c>
+    # Caching
+    # 30 Tage
+    <Directory "/storage">
+        <FilesMatch "\.(mp4|mov)$">
+            Header set Cache-Control "public, max-age=2628000, no-transform"
+        </FilesMatch>
+    </Directory>
+#</IfModule>
+
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
