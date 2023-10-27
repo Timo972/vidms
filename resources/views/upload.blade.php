@@ -19,7 +19,6 @@
         <input type="text" name="name" class="input input-block input-lg focus:input-primary" placeholder="video-name" />
         <input type="text" name="title" class="input input-block input-ghost-primary input-lg" placeholder="video title" />
         <textarea type="text" name="description" class="textarea textarea-block textarea-ghost-primary" placeholder="description"></textarea>
-        <input type="password" name="secret" class="input input-block input-lg focus:input-primary" placeholder="password" />
         <div class="flex flex-row justify-between">
             <input type="reset" class="btn btn-lg btn-outline" value="Reset" />
             <input type="submit" class="btn btn-lg btn-outline-primary" value="Upload" />

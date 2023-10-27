@@ -7,7 +7,12 @@
     <section class="my-12">
         <span class="badge badge-primary">{{ $visibility }}</span>
         <span class="badge badge-primary">{{ $mime }}</span>
-        <h1 class="text-4xl text-content1 my-2 flex items-center gap-2">{{ $video->title }} <span class="badge badge-outline text-base px-4 rounded-lg">{{ $video->slug }}</span></h1>
+        <h1 class="text-4xl text-content1 my-2 flex items-center gap-2">
+            {{ $video->title }}
+            <span class="badge badge-outline text-base px-4 rounded-lg">
+                {{ $video->slug }}
+            </span>
+        </h1>
         <p class="text-content2">{{ $video->description ?? 'No description provided' }}</p>
     </section>
     <!-- custom player disabled -->

@@ -23,9 +23,8 @@ class VideoController extends Controller
     protected function renderView(Video $video)
     {
         $url = Storage::url($video->path);
-        $visiblity = Storage::getVisibility($video->path);
         $mime = Storage::mimeType($video->path);
-        return view('view', ['video' => $video, 'url' => $url, 'visibility' => $visiblity, 'mime' => $mime]);
+        return view('view', ['video' => $video, 'url' => $url, 'visibility' => 'public', 'mime' => $mime]);
     }
 
     public function upload(Request $request)
@@ -51,19 +50,11 @@ class VideoController extends Controller
         }
 
         $name = $request->input('name');
-        $secret = $request->input('secret');
         $title = $request->input('title');
         $desc = $request->input('description');
 
-        // stream upload file to storage
-        $filePath = false;
-        if ($secret) {
-            $filePath = Storage::putFile('videos', $file);
-            // $filePath = $file->store('videos');
-        } else {
-            // $filePath = $file->storePublicly('public/videos');
-            $filePath = Storage::putFile('public/videos', $file, 'public');
-        }
+        // save file to default storage
+        $filePath = Storage::putFile('videos', $file, 'public');
 
         if (!$filePath) {
             return redirect()->back()->withErrors([
@@ -79,7 +70,7 @@ class VideoController extends Controller
         ]);
         $video->save();
 
-        return VideoController::renderView($video);
+        return redirect("/view/{$video->slug}");
     }
 
     public function delete(Request $request)
