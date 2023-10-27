@@ -15,23 +15,11 @@
         </h1>
         <p class="text-content2">{{ $video->description ?? 'No description provided' }}</p>
     </section>
-    <!-- custom player disabled -->
-    <!--<media-player title="{{ $video->title }}" poster="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/thumbnail.webp?time=268&width=980" thumbnails="https://media-files.vidstack.io/sprite-fight/thumbnails.vtt" aspect-ratio="16/9" crossorigin>
-        <media-outlet>
-            <source src="/stream/{{ $video->slug }}" type="{{ $mime }}" />
-        </media-outlet>
-        <media-community-skin></media-community-skin>
-    </media-player>-->
-    <div class="grid grid-cols-2 gap-2">
-        <span class="badge badge-secondary">static</span>
-        <span class="badge badge-secondary">streamed</span>
-        <video controls>
-            <source src="{{ $url }}" type="{{ $mime }}" />
-        </video>
-        <video controls>
-            <source src="/stream/{{ $video->slug }}" type="{{ $mime }}" />
-        </video>
-    </div>
+
+    <video controls>
+        <source src="{{ $url }}" type="{{ $mime }}" />
+    </video>
+
     <section class="my-6">
         <h2 class="text-3xl">Details</h2>
         <div class="flex w-full overflow-x-auto">
