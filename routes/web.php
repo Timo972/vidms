@@ -21,10 +21,16 @@ Route::get('/upload', function () {
 })->name('upload');
 Route::post('/upload', [VideoController::class, 'upload']);
 
+Route::middleware('cache.headers:max_age=2628000')->group(function() {
+    Route::get('/view/{video}', [VideoController::class, 'view'])->name('view');
+    Route::get('/stream/{video}', [VideoController::class, 'stream'])->name('stream');
+    Route::get('/download/{video}', [VideoController::class, 'download'])->name('download');
+});
+/*
 Route::get('/view/{video}', [VideoController::class, 'view'])->name('view');
 Route::get('/stream/{video}', [VideoController::class, 'stream'])->name('stream');
 Route::get('/read/{video}', [VideoController::class, 'read'])->name('read');
-Route::get('/download/{video}', [VideoController::class, 'download'])->name('download');
+Route::get('/download/{video}', [VideoController::class, 'download'])->name('download');*/
 
 Route::post('/delete', [VideoController::class, 'delete'])->name('delete');
 
